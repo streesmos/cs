@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model Category {
+    id            Int       @id @default(autoincrement())
+    name          String    @unique
+    categoryTitle String    @unique
+    products Product[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+model Product {
+  id       Int     @id @default(autoincrement())
+  title    String
+  name     String
+  content  String
+  table    Table[]
+  imagesUrl ImagesUrl[]
+  imageUrl String
+  simProduct SimProducts[]
+  active   Boolean @default(true)
+
+    category   Category @relation(fields: [categoryId], references: [id])
+    categoryId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Table {
+  id       Int     @id @default(autoincrement())
+  name    String
+  content     String
+
+  poroduct Product @relation(fields: [productId], references: [id])
+  productId Int
+  active   Boolean @default(true)
+
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ImagesUrl {
+  id       Int     @id @default(autoincrement())
+  name    String
+  content     String
+
+  poroduct Product @relation(fields: [productId], references: [id])
+  productId Int
+  active   Boolean @default(true)
+
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model SimProducts {
+  id       Int     @id @default(autoincrement())
+  name    String
+  content     Int
+
+  poroduct Product @relation(fields: [productId], references: [id])
+  productId Int
+  active   Boolean @default(true)
+
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
