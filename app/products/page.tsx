@@ -53,7 +53,7 @@ export default async function Products() {
     <Container className="px-8">
     {
     category.map((category) =>(
-      category.products.length > 0 && category.id === (1 || 2 || 3) &&(
+      category.products.length > 0 && category.id < 4   &&(
         <ProductsGroupList
         key={category.id}
         title={category.name}
