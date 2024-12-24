@@ -91,7 +91,7 @@ export function AboutList() {
         </div>
         <div className="flex justify-center align-bottom">
              
-            <Button className="flex"> <Link href="tel:+74956493295">Подробнее</Link></Button>
+            <Button className="flex"> <Link href="/aboutus">Подробнее</Link></Button>
             
         </div>
 
